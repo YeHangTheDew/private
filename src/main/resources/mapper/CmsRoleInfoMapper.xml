@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yechh.dao.CmsRoleInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yechh.entity.CmsRoleInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_BY" property="modifiedBy" jdbcType="VARCHAR" />
+    <result column="MODIFIED_DATE" property="modifiedDate" jdbcType="TIMESTAMP" />
+    <result column="SORTNO" property="sortno" jdbcType="INTEGER" />
+    <result column="STATE" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cms_role_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yechh.entity.CmsRoleInfo" >
+    insert into cms_role_info (ID, ROLE_CODE, ROLE_NAME, 
+      CREATE_BY, CREATE_DATE, MODIFIED_BY, 
+      MODIFIED_DATE, SORTNO, STATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleCode,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifiedBy,jdbcType=VARCHAR}, 
+      #{modifiedDate,jdbcType=TIMESTAMP}, #{sortno,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yechh.entity.CmsRoleInfo" >
+    update cms_role_info
+    set ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      MODIFIED_BY = #{modifiedBy,jdbcType=VARCHAR},
+      MODIFIED_DATE = #{modifiedDate,jdbcType=TIMESTAMP},
+      SORTNO = #{sortno,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ID, ROLE_CODE, ROLE_NAME, CREATE_BY, CREATE_DATE, MODIFIED_BY, MODIFIED_DATE, 
+    SORTNO, STATE
+    from cms_role_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAllByPrimaryKey" resultType="com.yechh.entity.CmsRoleInfo" >
+      select a.user_code userCode,b.id,b.role_code roleCode,b.role_name roleName,
+      b.create_by createBy,b.create_date createDate,b.modified_by modifiedBy,b.modified_date modifiedDate,b.sortno,b.state
+      from cms_user_info a,cms_role_info b,cms_user_role_r r
+      where a.user_code = r.user_code and b.role_code = r.role_code
+      <if test="userCode != null">
+        and a.user_code = #{userCode}
+      </if>
+      <if test="roleCode != null">
+        and b.role_code = #{roleCode}
+      </if>
+    </select>
+
+
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, ROLE_CODE, ROLE_NAME, CREATE_BY, CREATE_DATE, MODIFIED_BY, MODIFIED_DATE, 
+    SORTNO, STATE
+    from cms_role_info
+  </select>
+
+
+
+</mapper>

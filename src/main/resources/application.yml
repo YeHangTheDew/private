@@ -1,0 +1,82 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+logging:
+        config: classpath:log/logback-spring.xml
+        path: D:/nmyslog/nmys
+
+#公共配置与profiles选择无关 mapperLocations指的路径是src/main/resources
+mybatis:
+  typeAliasesPackage: com.yechh.entity
+  mapperLocations: classpath:mapper/*.xml
+
+
+---
+
+#开发配置
+spring:
+  thymeleaf:
+  prefix: classpath:/templates/
+  #mvc:
+  #  view:
+   #   prefix: /WEB-INF/jsp/
+   #   suffix: .jsp
+  profiles: dev
+  datasource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      druid:
+          first:   #数据源1
+              url: jdbc:mysql://localhost:3306/yechh?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+              username: root
+              password: root
+          second:   #数据源2
+              url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+              username: root
+              password: 10086
+          initial-size: 10
+          max-active: 100
+          min-idle: 10
+          max-wait: 60000
+          pool-prepared-statements: true
+          max-pool-prepared-statement-per-connection-size: 20
+          time-between-eviction-runs-millis: 60000
+          min-evictable-idle-time-millis: 300000
+          #validation-query: SELECT 1 FROM DUAL
+          test-while-idle: true
+          test-on-borrow: false
+          test-on-return: false
+          stat-view-servlet:
+              enabled: true
+              url-pattern: /druid/*
+              #login-username: admin
+              #login-password: admin
+          filter:
+              stat:
+                  log-slow-sql: true
+                  slow-sql-millis: 1000
+                  merge-sql: false
+              wall:
+                  config:
+                      multi-statement-allow: true
+
+
+
+
+  #datasource:
+  #  url: jdbc:mysql://localhost:3306/yechh?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+  #  username: root
+  #  password: root
+  #  driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+   # type: com.alibaba.druid.pool.DruidDataSource
+#pagehelper分页插件配置
+pagehelper:
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: count=countSql
+
+

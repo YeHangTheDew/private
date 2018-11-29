@@ -10,8 +10,8 @@ function submitLogin() {
             dataType:"json",
             success: function(rep){
                 if(rep.status == 0){
-                    alert(rep.message);
-                    //window.location.reload();
+                    //alert(rep.message);
+                    window.location.href="http://localhost:8080/auth/index";
 //                    loadPage(0,baseUrl);
                 }else{
                     alert(rep.message);

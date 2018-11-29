@@ -2,6 +2,7 @@ package com.common.shiro.controller;
 import com.common.constant.IConstants;
 import com.common.entity.JsonBean;
 import com.common.utils.ParamUtils;
+import com.yechh.entity.User;
 import org.apache.commons.collections.MapUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -32,7 +33,15 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/login")
     public String login() {
+        //return "/index.html";
+        return  "/toLogin.html";
+    }
+    @RequestMapping(value = "/index")
+    public String index(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getSession().getAttribute("user");
         return "/index.html";
+
     }
     @RequestMapping(value = "/toMenu")
     public String toMenu() {
@@ -43,7 +52,8 @@ public class AuthenticationController {
         return "/main.html";
     }
     @RequestMapping(value="/toLogin")
-    public ModelAndView toLogin(HttpServletRequest request){
+    @ResponseBody
+    public JsonBean toLogin(HttpServletRequest request){
         JsonBean reJson= new JsonBean();
         Map paramMap = ParamUtils.handleServletParameter(request);
         String userCode = MapUtils.getString(paramMap, "userCode");
@@ -64,9 +74,9 @@ public class AuthenticationController {
             reJson.setMessage("登陆异常");
         }
         if(!StringUtils.isEmpty(reJson.getMessage())){
-            ModelAndView model= new ModelAndView("login.html");
-            model.addObject("reJson",reJson);
-            return model;
+/*            ModelAndView model= new ModelAndView("login.html");
+            model.addObject("reJson",reJson);*/
+            return reJson;
         }
         reJson.setStatus(IConstants.RESULT_INT_SUCCESS);
         String res = subject.getPrincipals().toString();
@@ -78,9 +88,10 @@ public class AuthenticationController {
         }
         reJson.setData(res);
         reJson.setMessage("登陆成功");
-        ModelAndView model= new ModelAndView("toIndex.html");
-        model.addObject("reJson",reJson);
-        return model;
+        return reJson;
+        //ModelAndView model= new ModelAndView("toIndex.html");
+        //model.addObject("reJson",reJson);
+        //return model;
 
 
     }

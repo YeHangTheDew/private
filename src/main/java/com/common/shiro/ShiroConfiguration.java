@@ -62,6 +62,7 @@ public class ShiroConfiguration {
         filterFactoryBean.setUnauthorizedUrl("/errorPage/403");
         // 配置访问权限
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("/druid/*.*", "anon");
         filterChainDefinitionMap.put("/getMenu", "anon"); // 表示可以匿名访问
         filterChainDefinitionMap.put("/css/**", "anon"); // 表示可以匿名访问
         filterChainDefinitionMap.put("/fonts/**", "anon");

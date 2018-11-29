@@ -1,0 +1,60 @@
+CREATE TABLE `cms_role_info` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT COMMENT '角色编号',
+  `ROLE_CODE` varchar(20) NOT NULL COMMENT '角色编码',
+  `ROLE_NAME` varchar(60) NOT NULL COMMENT '角色名称',
+  `CREATE_BY` varchar(20) DEFAULT NULL COMMENT '创建人',
+  `CREATE_DATE` datetime DEFAULT NULL COMMENT '创建时间',
+  `MODIFIED_BY` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `MODIFIED_DATE` datetime DEFAULT NULL COMMENT '修改时间',
+  `SORTNO` int(2) DEFAULT '0' COMMENT '排序',
+  `STATE` int(2) DEFAULT NULL COMMENT '数据状态',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cms_user_info` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `USER_CODE` varchar(20) NOT NULL COMMENT '用户编码',
+  `USER_NAME` varchar(64) NOT NULL COMMENT '用户名称',
+  `USER_PWD` varchar(150) DEFAULT NULL COMMENT '用户密码',
+  `REMARK` varchar(60) DEFAULT NULL COMMENT '备注',
+  `CREATE_BY` varchar(20) DEFAULT NULL COMMENT '创建人',
+  `CREATE_DATE` datetime DEFAULT NULL COMMENT '创建时间',
+  `MODIFIED_BY` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `MODIFIED_DATE` datetime DEFAULT NULL COMMENT '修改时间',
+  `SORTNO` int(2) DEFAULT '0' COMMENT '排序',
+  `STATE` int(2) DEFAULT NULL COMMENT '数据状态',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cms_user_role_r` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_CODE` varchar(10) DEFAULT NULL,
+  `ROLE_CODE` varchar(10) DEFAULT NULL,
+  `CREATE_BY` varchar(20) DEFAULT NULL COMMENT '创建人',
+  `CREATE_DATE` datetime DEFAULT NULL COMMENT '创建时间',
+  `MODIFIED_BY` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `MODIFIED_DATE` datetime DEFAULT NULL COMMENT '修改时间',
+  `SORTNO` int(2) DEFAULT '0' COMMENT '排序',
+  `STATE` int(2) DEFAULT NULL COMMENT '数据状态',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `menu` (
+  `id` int(11) NOT NULL,
+  `menu_name` varchar(255) DEFAULT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `menu_url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user` (
+  `id` int(11) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+

@@ -29,4 +29,9 @@ public class CmsUserServiceImpl implements CmsUserService {
     public List<CmsRoleInfo> getCmsRoleInfos(Map<String, Object> map) {
         return cmsRoleInfoMapper.selectAllByPrimaryKey(map);
     }
+
+    @Override
+    public CmsUserInfo findByUsername(String tokenValue) {
+        return cmsUserInfoMapper.selectByUsercode(tokenValue);
+    }
 }

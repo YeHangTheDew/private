@@ -11,6 +11,7 @@ public interface CmsUserInfoMapper {
     int insert(CmsUserInfo record);
 
     CmsUserInfo selectByPrimaryKey(Integer id);
+    CmsUserInfo selectByUsercode(String userCode);
 
     List<CmsUserInfo> selectAll();
 

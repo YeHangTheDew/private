@@ -48,6 +48,12 @@
     from cms_user_info
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUsercode" resultType="com.yechh.entity.CmsUserInfo" >
+    select ID, USER_CODE, USER_NAME, USER_PWD, REMARK, CREATE_BY, CREATE_DATE, MODIFIED_BY,
+    MODIFIED_DATE, SORTNO, STATE
+    from cms_user_info
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+  </select>
   <select id="selectAllByPrimaryKey" resultType="com.yechh.entity.CmsUserInfo" >
     select id,user_code userCode,user_name userName,user_pwd userPwd,remark,
     create_by createBy,create_date createDate,modified_by modifiedBy,modified_date modifiedDate,sortno,state

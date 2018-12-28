@@ -18,7 +18,7 @@ function submitLogin() {
                 }
             },
             error:function(rep){
-                alert(rep);
+                consol.log(rep);
                 alert("获取信息失败!");
             }
         });

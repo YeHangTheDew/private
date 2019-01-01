@@ -12,3 +12,7 @@
 #使用分页插件：pagehelper
 
 #mybatis自动生成mybatis-generator
+
+#redis实现基本的单点登录功能
+
+#shiro权限框架

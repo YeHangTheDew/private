@@ -8,6 +8,7 @@ import com.common.utils.BuildTreeUtil;
 import com.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -41,5 +42,13 @@ public class MenuController {
         map.put("menuList",result);
 
         return map;
+    }
+    @RequestMapping(value="/getMenuList")
+    public ModelAndView getMenuList()
+    {
+        List<Menu> menuList=menuService.getAllMenuList();
+        ModelAndView model=new ModelAndView("/menu/menu.html");
+        model.addObject("menuList",menuList);
+        return model;
     }
 }

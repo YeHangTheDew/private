@@ -31,9 +31,7 @@ import org.thymeleaf.util.StringUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -48,8 +46,41 @@ public class AuthenticationController {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
-
+    @Autowired
     private CmsUserService cmsUserService;
+
+    @RequestMapping(value="/getData")
+    @ResponseBody
+    public List<String[]> getData(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getSession().getAttribute("user");
+        List<String[]> list= new ArrayList<>();
+        String[] str=new String[]{"1","2","3","4","5"};
+        list.add(str);
+        list.add(str);
+        list.add(str);
+
+        return list;
+    }
+
+    @RequestMapping(value="/getDataArry")
+    @ResponseBody
+    public String[] getDataArry(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getSession().getAttribute("user");
+        String[] str=new String[]{"1","2","3","4","5"};
+        return str;
+    }
+    @RequestMapping(value="/getDataMap")
+    @ResponseBody
+    public Map<String,String> getDataMap(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getSession().getAttribute("user");
+        HashMap<String,String> map=new HashMap<>();
+        map.put("1","yechanghang");
+        map.put("2","yujianhuan");
+        return  map;
+    }
 
     @RequestMapping(value = "/login")
     public String login() {
@@ -61,6 +92,13 @@ public class AuthenticationController {
         Subject subject = SecurityUtils.getSubject();
         User user = (User) subject.getSession().getAttribute("user");
         return "/index.html";
+
+    }
+    @RequestMapping(value = "/toDemo")
+    public String toDemo(){
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getSession().getAttribute("user");
+        return "/echartsDemo.html";
 
     }
     @RequestMapping(value = "/toMenu")

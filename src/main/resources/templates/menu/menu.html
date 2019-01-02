@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/aquamarine.css" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <title>菜单展示</title>
+</head>
+<body>
+    <div class="table-responsive">
+        <table class="table">
+            <caption>菜单详情</caption>
+            <thead>
+                <tr>
+                    <th>菜单名</th>
+                    <th>菜单路径</th>
+                    <th>操作</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each=" menu: ${menuList}">
+
+                    <td th:text="${menu.menuName}"></td>
+                    <td th:text="${menu.menuUrl}"></td>
+                    <td th:text="${menu.id}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

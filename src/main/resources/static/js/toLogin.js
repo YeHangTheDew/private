@@ -1,3 +1,9 @@
+//$(document).ready(function(){});
+$(function(){
+    if (window != window.top) {
+        window.top.location.href = window.location.href;
+    }
+});
 function submitLogin() {
         var userCode = $.trim($("#userCode").val());
         var userPwd = $.trim($("#userPwd").val());

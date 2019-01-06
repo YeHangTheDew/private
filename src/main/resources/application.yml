@@ -33,8 +33,8 @@ spring:
       druid:
           first:   #数据源1
               url: jdbc:mysql://localhost:3306/yechh?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
-              username: root
-              password: root
+              username: ENC(j0l7Tq1D1iXpQkF5xOsbxQ==)
+              password: ENC(n0azWg56XSZYizDZ0Ii6BQ==)
           second:   #数据源2
               url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
               username: root
@@ -64,8 +64,10 @@ spring:
               wall:
                   config:
                       multi-statement-allow: true
-
-
+#配置数据源加密的密钥
+jasypt:
+  encryptor:
+    password: yechh
 
 
 

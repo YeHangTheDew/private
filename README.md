@@ -25,3 +25,8 @@ var contextPath = '${pageContext.request.getContextPath()}';
 #redis实现基本的单点登录功能
 
 #shiro权限框架
+
+
+#对数据库账号密码进行加密操作
+
+#实现编程式事务

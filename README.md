@@ -30,3 +30,5 @@ var contextPath = '${pageContext.request.getContextPath()}';
 #对数据库账号密码进行加密操作
 
 #实现编程式事务
+
+#整合Jersey，restful架构
